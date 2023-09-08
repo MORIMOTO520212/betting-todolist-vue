@@ -23,8 +23,13 @@ const routes = [
   },
   {
     path: "/createtask",
-    name: "Signup",
+    name: "CreateTask",
     component: CreateTask,
+  },
+  {
+    path: "/mypage",
+    name: "MyPage",
+    component: Mypage,
   },
 ];
 
