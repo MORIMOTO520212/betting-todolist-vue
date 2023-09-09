@@ -25,11 +25,11 @@ const done = (e: any) => {
   const taskDate = store.state.tasks[taskIndex].expires;
   console.log("delete task:", store.state.tasks[taskIndex]);
   if (new Date() <= new Date(taskDate)) {
-    modalTitle.value = "セーフです";
+    modalTitle.value = "セーフです！";
     modalMessage.value =
       "おめでとうございます！今後も期限内にタスク完了を心掛けましょう！";
   } else {
-    modalTitle.value = "アウトです";
+    modalTitle.value = "アウトです！";
     modalMessage.value =
       "残念ながら、このタスクは期限内に完了できませんでした。掛け金は手元には戻りません。";
   }
@@ -63,26 +63,41 @@ const addTask = () => {
           </div>
         </div>
       </div>
-      <h5>タスク一覧</h5>
-      <ul class="list-group">
+      <h5 class="mb-4">タスク一覧</h5>
+      <ul
+        class="list-group w-100 overflow-x-hidden overflow-y-scroll"
+        style="height: 80%"
+      >
         <li
           v-for="{ id, title, detail, payment, expires } in store.state.tasks"
-          class="list-group-item p-0"
+          class="list-group-item list-group-item-primary p-0"
         >
-          <div class="task-card container bg-body-secondary p-2">
-            <div class="row">
-              <div class="col">{{ title }}</div>
-              <div class="col-3">
-                <button type="button" class="btn" @click="done">
-                  <img :id="id" src="../assets/check-lg.svg" />
+          <div class="task-card container p-2">
+            <div class="row w-100">
+              <div class="col text-start ps-4">
+                <strong>{{ title }}</strong>
+                <p class="my-fs-14px py-2 m-0">{{ detail }}</p>
+              </div>
+              <div class="col-2">
+                <button
+                  type="button"
+                  class="btn px-1 py-1"
+                  @click="done"
+                  style="width: 40px; height: 40px"
+                >
+                  <img :id="id" class="w-100" src="../assets/check-lg.svg" />
                 </button>
               </div>
             </div>
             <div class="row">
               <div class="col-6 my-fs-14px">
+                <img src="../assets/clock-history.svg" />
                 {{ new Date(expires).toLocaleDateString(undefined, options) }}
               </div>
-              <div class="col-3 my-fs-14px">{{ payment }}円</div>
+              <div class="col-3 my-fs-14px">
+                <img src="../assets/piggy-bank.svg" />
+                {{ payment }}円
+              </div>
             </div>
           </div>
         </li>

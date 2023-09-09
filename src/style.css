@@ -73,7 +73,6 @@ button:focus-visible {
 .main-container {
   display: grid;
   grid-template-rows: 1fr 0.2fr;
-  height: 100vh;
 }
 
 @media (prefers-color-scheme: light) {
