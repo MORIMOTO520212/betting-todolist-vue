@@ -7,12 +7,36 @@ import router from "./router/index";
 const store = createStore({
   state() {
     return {
-      tasks: [{}, {}, {}],
+      userData: [],
+      tasks: [
+        {
+          id: "sdu32iosdf",
+          title: "レポート提出期限",
+          detail: "詳細",
+          payment: 1000,
+          expires: Date.now(),
+        },
+        {
+          id: "f8953kjt",
+          title: "タスク",
+          detail: "詳細",
+          payment: 500,
+          expires: Date.now(),
+        },
+      ],
     };
   },
   mutations: {
-    increment(state) {
+    increment(state: any) {
       state.count++;
+    },
+    createTask(state: any, data: any) {
+      console.log("createTask", data.id);
+      state.tasks.unshift(data);
+    },
+    deleteTask(state: any, targetId: any) {
+      console.log("deleteTask", targetId);
+      state.tasks = state.tasks.filter(({ id }: any) => id !== targetId);
     },
   },
 });

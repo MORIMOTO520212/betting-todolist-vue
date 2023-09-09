@@ -4,7 +4,7 @@
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
         <img
-          src="../assets/vue.svg"
+          src="../assets/applogo.jpg"
           width="30"
           height="30"
           class="d-inline-block align-text-top"

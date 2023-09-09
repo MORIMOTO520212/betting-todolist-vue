@@ -1,11 +1,140 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 import Header from "../components/Header.vue";
+import md5 from "js-md5";
 
 const store = useStore();
 const router = useRouter();
+const title = ref("");
+const detail = ref("");
+const payment = ref("100");
+const expires = ref(new Date().toISOString().split(".")[0]);
+
+interface Task {
+  id: String;
+  title: String;
+  detail: String;
+  payment: Number;
+  expires: Date;
+}
+
+const addTask = () => {
+  console.log("タスクの追加処理");
+  const task: Task = {
+    id: md5(new Date().getTime().toString()),
+    title: title.value,
+    detail: detail.value,
+    payment: parseInt(payment.value),
+    expires: new Date(expires.value),
+  };
+  store.commit("createTask", task);
+  router.push({ name: "Home" });
+};
 </script>
 <template>
-  <h1>CreateTask.vue</h1>
+  <div class="main-container">
+    <header>
+      <Header />
+    </header>
+    <main>
+      <div class="container h-100">
+        <div class="row">
+          <h5>タスクの追加</h5>
+        </div>
+        <div class="row">
+          <div class="container">
+            <div class="row row-cols-2 py-3 gy-2">
+              <div class="col text-start">タスクのタイトル</div>
+              <div class="col"></div>
+              <div class="w-100">
+                <input
+                  v-model="title"
+                  type="text"
+                  class="form-control"
+                  placeholder="入力してください"
+                />
+              </div>
+            </div>
+            <div class="row row-cols-2 py-3 gy-2">
+              <div class="col text-start">タスク内容の詳細</div>
+              <div class="col"></div>
+              <div class="w-100">
+                <div class="form-floating">
+                  <textarea
+                    v-model="detail"
+                    class="form-control"
+                    id="floatingTextarea"
+                  ></textarea>
+                  <label for="floatingTextarea">詳細</label>
+                </div>
+              </div>
+            </div>
+            <div class="row row-cols-2 py-3 gy-2">
+              <div class="col text-start">掛け金</div>
+              <div class="col"></div>
+              <div class="w-100">
+                <div class="input-group mb-3">
+                  <input
+                    v-model="payment"
+                    type="text"
+                    class="form-control"
+                    placeholder="タスクに掛ける金額"
+                  />
+                  <button
+                    class="btn btn-outline-secondary dropdown-toggle"
+                    type="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    金額
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#">100円</a></li>
+                    <li>
+                      <a class="dropdown-item" href="#">200円</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">500円</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">1,000円</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="row row-cols-2 py-3 gy-2">
+              <div class="col text-start">期限</div>
+              <div class="col"></div>
+              <div class="w-100">
+                <input
+                  v-model="expires"
+                  type="datetime-local"
+                  class="form-control"
+                  :min="new Date().toISOString().split('.')[0]"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <button type="button" class="btn btn-primary" @click="addTask">
+        タスクを追加する
+      </button>
+    </footer>
+  </div>
 </template>
+
+<style scoped>
+input[type="datetime-local"] {
+  width: 100%;
+  background: #fff;
+}
+input[type="datetime-local" i] {
+  color: #000;
+}
+</style>
