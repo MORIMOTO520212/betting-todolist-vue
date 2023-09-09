@@ -7,7 +7,7 @@ import router from "./router/index";
 const store = createStore({
   state() {
     return {
-      userData: [],
+      user: {},
       tasks: [
         {
           id: "sdu32iosdf",

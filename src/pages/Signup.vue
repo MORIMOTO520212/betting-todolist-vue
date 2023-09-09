@@ -2,28 +2,25 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
-import Header from "../components/Header.vue";
 
-const store = useStore();
 const router = useRouter();
 
-const email = ref(undefined);
-const passwd = ref(undefined);
-const passwdAgain = ref(undefined);
+const email = ref("");
+const passwd = ref("");
+const passwdAgain = ref("");
 
 const signup = () => {
   console.log("ログイン処理");
   console.log("メールアドレス", email.value);
   console.log("パスワード", passwd.value);
   console.log("パスワード（再度）", passwdAgain.value);
+  localStorage.setItem("email", email.value);
+  localStorage.setItem("passwd", passwd.value);
   router.push({ name: "Home" });
 };
 </script>
 <template>
   <div class="main-container">
-    <header>
-      <Header />
-    </header>
     <main>
       <div class="container h-100">
         <div class="row login-title">

@@ -48,9 +48,6 @@ const addTask = () => {
 
 <template>
   <div class="main-container">
-    <header>
-      <Header />
-    </header>
     <main>
       <div class="w-100 container">
         <div class="row">
@@ -61,12 +58,12 @@ const addTask = () => {
               class="btn btn-lg w-100"
               @click="router.push({ name: 'MyPage' })"
             >
-              <img class="w-100" src="../assets/person-circle.svg" />
+              <img class="w-100" src="../assets/undraw_male_avatar_g98d.svg" />
             </button>
           </div>
         </div>
       </div>
-      <p>タスク一覧</p>
+      <h5>タスク一覧</h5>
       <ul class="list-group">
         <li
           v-for="{ id, title, detail, payment, expires } in store.state.tasks"
@@ -88,6 +85,9 @@ const addTask = () => {
               <div class="col-3 my-fs-14px">{{ payment }}円</div>
             </div>
           </div>
+        </li>
+        <li v-if="store.state.tasks.length === 0">
+          <p>タスクはありません</p>
         </li>
       </ul>
     </main>
@@ -153,5 +153,4 @@ const addTask = () => {
       </div>
     </div>
   </div>
-  <RouterPage />
 </template>

@@ -2,7 +2,6 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
-import Header from "../components/Header.vue";
 import md5 from "js-md5";
 
 const store = useStore();
@@ -35,9 +34,6 @@ const addTask = () => {
 </script>
 <template>
   <div class="main-container">
-    <header>
-      <Header />
-    </header>
     <main>
       <div class="container h-100">
         <div class="row">
