@@ -30,7 +30,7 @@ const signup = () => {
           <div class="d-flex justify-content-center align-items-center">
             <h3>新規登録</h3>
           </div>
-          <p>自分を追い込もむ準備は出来ているか？</p>
+          <p>自分を追い込む準備は出来ているか？</p>
         </div>
         <div class="row login-form">
           <div class="container">
