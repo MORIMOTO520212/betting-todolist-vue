@@ -202,6 +202,7 @@ setInterval(() => {
           <div class="modal-body">
             {{ modalMessage }}
             <p v-if="modalState" style="font-size: 70px">🥰</p>
+            <p v-else style="font-size: 70px">🫠</p>
           </div>
           <div class="modal-footer">
             <button
