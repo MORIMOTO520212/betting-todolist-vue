@@ -9,7 +9,7 @@
           height="30"
           class="d-inline-block align-text-top"
         />
-        お金をベットするToDoリスト
+        Bettodo!
       </a>
     </div>
   </nav>
