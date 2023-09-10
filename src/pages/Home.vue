@@ -99,7 +99,7 @@ setInterval(() => {
 
       <p
         id="elmInspireMessage"
-        class="text-center pb-2"
+        class="text-center pb-2 text-dark-emphasis"
         style="
           transition: 600ms ease all;
           transform: skewX(-20deg);
