@@ -9,7 +9,7 @@
           height="30"
           class="d-inline-block align-text-top"
         />
-        Bettodo!
+        BETTODO
       </a>
     </div>
   </nav>
