@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, inject } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 import Header from "../components/Header.vue";
 
+const axios: any = inject("axios");
 const store = useStore();
 const router = useRouter();
 const modalTitle = ref();
@@ -44,6 +45,10 @@ const addTask = () => {
   console.log("タスクを追加する処理");
   router.push({ name: "CreateTask" });
 };
+
+axios.get(url.value).then((response) => {
+  res.value = response.data;
+});
 </script>
 
 <template>

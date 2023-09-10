@@ -3,6 +3,8 @@ import { createStore } from "vuex";
 import "./style.css";
 import App from "./App.vue";
 import router from "./router/index";
+import axios from "axios";
+import VueAxios from "vue-axios";
 
 const store = createStore({
   state() {
@@ -42,6 +44,8 @@ const store = createStore({
 });
 
 const app = createApp(App);
+app.use(VueAxios, axios);
+app.provide("axios", app.config.globalProperties.axios); // provide 'axios'
 app.use(store);
 app.use(router);
 app.mount("#app");
