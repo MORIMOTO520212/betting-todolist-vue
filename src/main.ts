@@ -9,29 +9,32 @@ import VueAxios from "vue-axios";
 const store = createStore({
   state() {
     return {
-      user: {},
+      api: {
+        signInUrl: "http://192.168.35.29:3000/users/sign_in.json",
+        csrfToken: "",
+      },
+      user: {
+        point: 0,
+      },
       tasks: [
         {
           id: "sdu32iosdf",
           title: "レポート提出期限",
-          detail: "詳細",
-          payment: 1000,
-          expires: Date.now(),
+          description: "詳細",
+          price: 1000,
+          deadline: Date.now(),
         },
         {
           id: "f8953kjt",
           title: "タスク",
-          detail: "詳細",
-          payment: 500,
-          expires: Date.now(),
+          description: "詳細",
+          price: 500,
+          deadline: Date.now(),
         },
       ],
     };
   },
   mutations: {
-    increment(state: any) {
-      state.count++;
-    },
     createTask(state: any, data: any) {
       console.log("createTask", data.id);
       state.tasks.unshift(data);
@@ -39,6 +42,9 @@ const store = createStore({
     deleteTask(state: any, targetId: any) {
       console.log("deleteTask", targetId);
       state.tasks = state.tasks.filter(({ id }: any) => id !== targetId);
+    },
+    addPoint(state: any) {
+      state.user.point += 10;
     },
   },
 });

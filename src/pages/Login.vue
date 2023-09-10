@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, inject } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 
+const axios: any = inject("axios");
 const store = useStore();
 const router = useRouter();
 
@@ -13,6 +14,32 @@ const login = () => {
   console.log("ログイン処理");
   console.log("メールアドレス", email.value);
   console.log("パスワード", passwd.value);
+  const data = JSON.stringify({
+    user: {
+      email: "example1@.com",
+      password: "password",
+    },
+  });
+  const options = {
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRF-Token": store.state.api.csrfToken,
+    },
+  };
+  // ユーザー認証
+  axios.post(store.state.api.signInUrl, data, options).then((response: any) => {
+    if (response.status === 200) {
+      console.log("Request Succeeded.");
+      console.log(response.data);
+      localStorage.setItem("email", response.data.email);
+      localStorage.setItem("passwd", "");
+      localStorage.setItem(
+        "authenticationToken",
+        response.data.authentication_token
+      );
+    }
+  });
+  // ホーム画面に遷移
   router.push({ name: "Home" });
 };
 </script>

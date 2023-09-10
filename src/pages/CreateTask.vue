@@ -7,16 +7,16 @@ import md5 from "js-md5";
 const store = useStore();
 const router = useRouter();
 const title = ref("");
-const detail = ref("");
-const payment = ref("100");
-const expires = ref(new Date().toISOString().split(".")[0]);
+const description = ref("");
+const price = ref(100);
+const deadline = ref(new Date().toISOString().split(".")[0]);
 
 interface Task {
   id: String;
   title: String;
-  detail: String;
-  payment: Number;
-  expires: Date;
+  description: String;
+  price: Number;
+  deadline: Date;
 }
 
 const addTask = () => {
@@ -24,9 +24,9 @@ const addTask = () => {
   const task: Task = {
     id: md5(new Date().getTime().toString()),
     title: title.value,
-    detail: detail.value,
-    payment: parseInt(payment.value),
-    expires: new Date(expires.value),
+    description: description.value,
+    price: parseInt(price.value),
+    deadline: new Date(deadline.value),
   };
   store.commit("createTask", task);
   router.push({ name: "Home" });
@@ -59,7 +59,7 @@ const addTask = () => {
               <div class="w-100">
                 <div class="form-floating">
                   <textarea
-                    v-model="detail"
+                    v-model="description"
                     class="form-control"
                     id="floatingTextarea"
                   ></textarea>
@@ -73,7 +73,7 @@ const addTask = () => {
               <div class="w-100">
                 <div class="input-group mb-3">
                   <input
-                    v-model="payment"
+                    v-model="price"
                     type="text"
                     class="form-control"
                     placeholder="タスクに掛ける金額"
@@ -106,7 +106,7 @@ const addTask = () => {
               <div class="col"></div>
               <div class="w-100">
                 <input
-                  v-model="expires"
+                  v-model="deadline"
                   type="datetime-local"
                   class="form-control"
                   :min="new Date().toISOString().split('.')[0]"
