@@ -1,4 +1,4 @@
-# Betting ToDo List - Vue
+# BETTODO! フロントエンドプロジェクト
 
 ## サーバーの実行
 
