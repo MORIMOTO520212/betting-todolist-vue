@@ -8,7 +8,7 @@ const store = useStore();
 const router = useRouter();
 const title = ref("");
 const description = ref("");
-const price = ref(100);
+const price = ref("100");
 const deadline = ref(new Date().toISOString().split(".")[0]);
 
 interface Task {

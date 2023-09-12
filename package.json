@@ -19,6 +19,7 @@
     "vuex": "^4.0.2"
   },
   "devDependencies": {
+    "@types/js-md5": "^0.7.0",
     "@vitejs/plugin-vue": "^4.2.3",
     "sass": "^1.66.1",
     "typescript": "^5.0.2",
